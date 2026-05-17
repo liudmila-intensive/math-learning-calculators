@@ -9,6 +9,10 @@ const LATEX_COMMANDS = [
   "cdot",
   "Delta",
   "delta",
+  "Longleftrightarrow",
+  "Leftrightarrow",
+  "Longrightarrow",
+  "Rightarrow",
   "sqrt",
   "pm",
   "le",
@@ -22,14 +26,28 @@ const LATEX_COMMANDS = [
   "ldots",
   "log",
   "ln",
+  "quad",
+  "qquad",
+  "text",
+  "mathbb",
 ].join("|");
 
-const DOUBLE_ESCAPED_COMMAND = new RegExp(`\\\\\\\\(${LATEX_COMMANDS})`, "g");
+const ESCAPED_COMMAND = new RegExp(String.raw`\\{2,}(${LATEX_COMMANDS})`, "g");
+const ESCAPED_SPACE = /\\{2,}\s/g;
 
-function normalizeLatex(latex) {
-  return String(latex)
-    .replace(DOUBLE_ESCAPED_COMMAND, "\\$1")
-    .replace(/\\\\ /g, "\\ ");
+export function normalizeLatex(latex) {
+  let normalized = String(latex);
+
+  for (let index = 0; index < 4; index += 1) {
+    const next = normalized
+      .replace(ESCAPED_COMMAND, "\\$1")
+      .replace(ESCAPED_SPACE, "\\ ");
+
+    if (next === normalized) break;
+    normalized = next;
+  }
+
+  return normalized;
 }
 
 export default function MathFormula({ latex }) {

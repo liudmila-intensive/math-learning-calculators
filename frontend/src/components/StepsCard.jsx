@@ -1,4 +1,29 @@
-import MathFormula from "./MathFormula";
+import MathFormula, { normalizeLatex } from "./MathFormula";
+
+function ChainMathFormula({ latex }) {
+  const parts = normalizeLatex(latex)
+    .split(/\s*\\Longleftrightarrow\s*/g)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (parts.length <= 1) {
+    return <MathFormula latex={latex} />;
+  }
+
+  return (
+    <div className="chain-formula">
+      {parts.map((part, index) => (
+        <div
+          className={index === 0 ? "chain-formula-line first" : "chain-formula-line"}
+          key={`${part}-${index}`}
+        >
+          {index > 0 && <span className="chain-sign">⇔</span>}
+          <MathFormula latex={part} />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function StepsCard({ steps }) {
   return (
@@ -29,7 +54,11 @@ export default function StepsCard({ steps }) {
 
               <div className="step-content">
                 {step.latex ? (
-                  <MathFormula latex={step.latex} />
+                  isChain ? (
+                    <ChainMathFormula latex={step.latex} />
+                  ) : (
+                    <MathFormula latex={step.latex} />
+                  )
                 ) : (
                   <div className="step-expression">{step.expression}</div>
                 )}

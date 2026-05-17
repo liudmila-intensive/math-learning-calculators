@@ -714,6 +714,42 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 1.05rem;
 }
 
+.chain-formula {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  width: 100%;
+}
+
+.chain-formula-line {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+
+.chain-formula-line.first {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.chain-sign {
+  color: #5b66ff;
+  font-size: 20px;
+  font-weight: 800;
+  justify-self: center;
+}
+
+.chain-formula .math-formula {
+  overflow-x: visible;
+  padding: 0;
+}
+
+.chain-formula .katex-display {
+  white-space: normal;
+}
+
 .step-explanation {
   grid-column: 2 / 3;
   justify-self: start;
