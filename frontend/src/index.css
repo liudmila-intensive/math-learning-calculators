@@ -701,9 +701,17 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 6px 0;
 }
 
+.math-formula .katex {
+  max-width: 100%;
+}
+
 .math-formula .katex-display {
   margin: 0;
   text-align: left;
+}
+
+.math-formula .katex-display > .katex {
+  white-space: normal;
 }
 
 .result-card .math-formula {
@@ -847,6 +855,11 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 14px;
   background: #fbfcff;
   padding: 12px;
+  min-width: 0;
+}
+
+.gauss-chain-item .math-formula {
+  font-size: 0.95rem;
 }
 
 .gauss-operation {
@@ -904,6 +917,11 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 14px;
   background: #fbfcff;
   padding: 14px;
+  min-width: 0;
+}
+
+.cramer-card .math-formula {
+  font-size: 0.95rem;
 }
 
 .cramer-card h4 {
@@ -924,8 +942,18 @@ input[type="number"]::-webkit-inner-spin-button {
   background: #f7f9fd;
 }
 
+.cramer-expansion .math-formula {
+  overflow-x: auto;
+}
+
 .cramer-expansion .math-formula + .math-formula {
   margin-top: 6px;
+}
+
+.cramer-solution-lines {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .step-section-title {

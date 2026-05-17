@@ -301,9 +301,12 @@ export default function LinearSystemPage() {
                       label={`\\Delta_{${item.index}}`}
                       expansion={item.expansion}
                     />
+                  <div className="cramer-solution-lines">
+                    <MathFormula latex={`x_{${item.index}}=\\frac{\\Delta_{${item.index}}}{\\Delta}`} />
                     <MathFormula
-                      latex={`x_{${item.index}}=\\frac{\\Delta_{${item.index}}}{\\Delta}=\\frac{${item.determinant_latex}}{${result.cramer.determinant_latex}}=${item.value_latex}`}
+                      latex={`x_{${item.index}}=\\frac{${item.determinant_latex}}{${result.cramer.determinant_latex}}=${item.value_latex}`}
                     />
+                  </div>
                   </div>
                 ))}
               </div>

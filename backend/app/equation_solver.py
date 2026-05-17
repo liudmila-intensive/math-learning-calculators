@@ -604,7 +604,7 @@ def build_linear_equation_result(left, right, left_text, right_text, variable_ex
 
     divided_latex = (
         f"{latex(variable_expr)} = {latex(shifted_expr)}"
-        f"\\colon {latex(total_coeff)}"
+        f":{latex(total_coeff)}"
     )
     chain_parts = [f"{latex(left)} = {latex(right)}"]
     has_expansion_step = latex(expanded_left) != latex(left) or latex(expanded_right) != latex(right)
