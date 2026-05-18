@@ -34,7 +34,6 @@ const LATEX_COMMANDS = [
 ].join("|");
 
 const ESCAPED_COMMAND = new RegExp(String.raw`\\{2,}(${LATEX_COMMANDS})`, "g");
-const ESCAPED_SPACE = /\\{2,}\s/g;
 
 function repairCompactFraction(match, token) {
   const value = String(token);
@@ -84,9 +83,7 @@ export function normalizeLatex(latex) {
   let normalized = String(latex);
 
   for (let index = 0; index < 4; index += 1) {
-    const next = normalized
-      .replace(ESCAPED_COMMAND, "\\$1")
-      .replace(ESCAPED_SPACE, "\\ ");
+    const next = normalized.replace(ESCAPED_COMMAND, "\\$1");
 
     if (next === normalized) break;
     normalized = next;
